@@ -18,7 +18,7 @@ Setup
 2. Configure s3cmd to work with your AWS account: `s3cmd --configure`. You can access or generate your AWS security credentials [here](https://aws-portal.amazon.com/gp/aws/developer/account/index.html?ie=UTF8&action=access-key).
 3. Create an S3 bucket: `s3cmd mb s3://my-database-backups`.
 4. Put the *.sh backup script somewhere on your server (ie - `/root/scripts`).
-5. Give the *.sh backup script 755 permissions: `chown 755 /root/scripts/backups/s3-mysql-backup.sh`.
+5. Give the *.sh backup script 755 permissions: `chmod 755 /root/scripts/backups/s3-mysql-backup.sh`.
 6. Edit the variables near the top of backup script to match your bucket, directory, and MySQL authentication.
 
 
