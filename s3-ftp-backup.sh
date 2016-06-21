@@ -14,7 +14,7 @@ EMAIL_SUBJECT_TAG="[backup of $HOST]"
 /usr/local/bin/s3cmd sync -v --recursive /home/backups/* s3://s3-bucket-name
 
 if [ "$?" = "0"]; then 
-	echo "Daily backup successful. | mail -s "$EMAIL_SUBJECT_TAG Backup successful" $MAIL
+	echo "Daily backup successful." | mail -s "$EMAIL_SUBJECT_TAG Backup successful" $MAIL
 else
-	echo "Daily backup failed. | mail -s "$EMAIL_SUBJECT_TAG Backup failed" $MAIL
+	echo "Daily backup failed." | mail -s "$EMAIL_SUBJECT_TAG Backup failed" $MAIL
 fi
