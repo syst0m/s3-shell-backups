@@ -2,6 +2,15 @@
 
 #### BEGIN CONFIGURATION ####
 
+# Hostname
+HOST=""
+
+# From email
+LMAIL=""
+
+# Admin email
+MAIL=""
+
 # set dates for backup rotation
 NOWDATE=`date +%Y-%m-%d`
 LASTDATE=$(date +%Y-%m-%d --date='1 week ago')
@@ -42,3 +51,9 @@ tar -czPf $NOWDATE-backup.tar.gz *.sql
 # remove all files in our source directory
 cd
 rm -f $SRCDIR/*
+
+if [ "$?" = "0" ]; then
+        echo "Subject: $HOST - Daily MysqL backup successful." | sendmail -f $LMAIL $MAIL
+else
+        echo "Subject: $HOST - Daily MySQL backup failed." | sendmail -f $LMAIL $MAIL
+fi

@@ -2,19 +2,23 @@
 
 # Backup from directory on server
 
+#### BEGIN CONFIGURATION ####
+
 # Hostname
 HOST=""
+
+# From email
+LMAIL=""
 
 # Admin email
 MAIL=""
 
-# Email Tag
-EMAIL_SUBJECT_TAG="[backup of $HOST]"
+#### END CONFIGURATION ####
 
-/usr/local/bin/s3cmd sync -v --recursive /home/backups/* s3://s3-bucket-name
+/usr/bin/s3cmd sync -v --recursive _LOCAL_DIR_/* s3://_BUCKET_NAME_/_SUBDIR_
 
-if [ "$?" = "0"]; then 
-	echo "Daily backup successful." | mail -s "$EMAIL_SUBJECT_TAG Backup successful" $MAIL
+if [ "$?" = "0" ]; then 
+	echo "Subject: $HOST - Daily backup successful." | sendmail -f $LMAIL $MAIL
 else
-	echo "Daily backup failed." | mail -s "$EMAIL_SUBJECT_TAG Backup failed" $MAIL
+	echo "Subject: $HOST - Daily backup failed." | sendmail -f $LMAIL $MAIL
 fi
